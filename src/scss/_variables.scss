@@ -1,0 +1,44 @@
+// Colors
+
+$black: #000000;
+$white: #ffffff;
+
+// Breakpoints
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+    xs: 0,
+  // Small screen / phone
+    sm: 576px,
+  // Medium screen / tablet
+    md: 768px,
+  // Large screen / desktop
+    lg: 992px,
+  // Extra large screen / wide desktop
+    xl: 1200px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+);
+
+@mixin for-size-above($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
